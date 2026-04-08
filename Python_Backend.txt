@@ -74,7 +74,7 @@ def view_all_pets():
         cur = conn.cursor()
 
         # TODO: second person implements this
-        # Should show all pets ordered by pet_id
+        # Should show all pets ordered by pet_id only
         # Expected columns: pet_id, name, species, age, available
         #
         # Example idea:
@@ -130,7 +130,7 @@ def count_applications_per_pet():
 
         # TODO: second person implements this
         # Should count how many applications each pet has
-        # Hint: LEFT JOIN Pet with AdoptionApplication
+        # LEFT JOIN Pet with AdoptionApplication
         # Expected columns: pet_id, pet_name, application_count
 
         print("TODO: count_applications_per_pet() not implemented yet.")
