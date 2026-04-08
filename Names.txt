@@ -1,0 +1,41 @@
+Table names
+
+Use these exact names
+
+UserTable
+Pet
+AdoptionApplication
+
+Do not rename them unless updated the Python too.
+
+Column names
+
+Use these exact columns.
+
+UserTable
+user_id
+name
+email
+Pet
+pet_id
+name
+species
+age
+available
+
+
+AdoptionApplication
+application_id
+user_id
+pet_id
+status
+submitted_at
+notes
+
+Valid status values
+Use only
+
+Pending
+Approved
+Rejected
+Withdrawn
