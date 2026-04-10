@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pet Adoption Management System</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">COP4710 Final Project</p>
+      <h1>Pet Adoption Management System</h1>
+      <p class="subtitle">
+        Simple front end scaffold for the Python backend logic in this repository.
+      </p>
+    </div>
+    <span class="badge">UI Prototype</span>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2>Quick Actions</h2>
+      <p class="muted">These buttons mirror the backend menu options.</p>
+      <div class="button-grid">
+        <button data-action="view_all_pets">View all pets</button>
+        <button data-action="view_available_pets">View available pets</button>
+        <button data-action="view_all_applications">View all applications</button>
+        <button data-action="count_applications_per_pet">Count applications per pet</button>
+        <button data-action="view_approved_applications">View approved applications</button>
+      </div>
+    </section>
+
+    <section class="panel two-column">
+      <div>
+        <h2>Submit Adoption Application</h2>
+        <form id="submit-application-form" class="form-card">
+          <label>
+            user_id
+            <input type="number" name="user_id" placeholder="Enter user_id" required />
+          </label>
+          <label>
+            pet_id
+            <input type="number" name="pet_id" placeholder="Enter pet_id" required />
+          </label>
+          <label>
+            notes
+            <textarea name="notes" rows="4" placeholder="Optional notes"></textarea>
+          </label>
+          <button type="submit">Submit application</button>
+        </form>
+      </div>
+
+      <div>
+        <h2>Search Applications</h2>
+        <form id="pet-search-form" class="form-card compact-form">
+          <label>
+            pet_id
+            <input type="number" name="pet_id" placeholder="View applications by pet ID" required />
+          </label>
+          <button type="submit">Search by pet</button>
+        </form>
+
+        <form id="user-search-form" class="form-card compact-form">
+          <label>
+            user_id
+            <input type="number" name="user_id" placeholder="View applications by user ID" required />
+          </label>
+          <button type="submit">Search by user</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Update Application Status</h2>
+      <form id="status-form" class="form-row">
+        <label>
+          application_id
+          <input type="number" name="application_id" placeholder="Enter application_id" required />
+        </label>
+        <label>
+          status
+          <select name="status" required>
+            <option value="Pending">Pending</option>
+            <option value="Approved">Approved</option>
+            <option value="Rejected">Rejected</option>
+            <option value="Withdrawn">Withdrawn</option>
+          </select>
+        </label>
+        <button type="submit">Update status</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="results-header">
+        <h2>Results</h2>
+        <p id="status-message" class="muted">Select an action to preview the interface behavior.</p>
+      </div>
+      <div id="results" class="results-box"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
