@@ -12,8 +12,10 @@ const users = [
   { user_id: 4, name: "David Smith", email: "david@example.com" }
 ];
 
-const pets = [
-  { pet_id: 101, name: "Buddy", species: "Dog", age: 3, available: true },
+const pets = [];
+
+const fallbackPets = [
+  { pet_id: 101, name: "Buddy", species: "Dog", age: 3, available: false },
   { pet_id: 102, name: "Mittens", species: "Cat", age: 2, available: true },
   { pet_id: 103, name: "Rocky", species: "Dog", age: 7, available: false },
   { pet_id: 104, name: "Coco", species: "Bird", age: 0, available: true },
@@ -106,13 +108,53 @@ const queryCatalog = {
   }
 };
 
+function initializePetData(data) {
+  console.log(data);
+  pets.splice(0, pets.length, ...data);
+  syncPetAvailabilityWithApprovals();
+  populateApplicationOptions();
+  actions.view_all_pets();
+}
+
+async function loadPets() {
+  showNotice("Loading pet data from pets.json...");
+
+  const candidatePaths = ["pets.json", "./pets.json", "/javascript_frontend/pets.json"];
+
+  for (const path of candidatePaths) {
+    try {
+      const res = await fetch(path);
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
+
+      const data = await res.json();
+      initializePetData(data);
+      setMessage(`Loaded pet data from ${path}.`);
+      return;
+    } catch (error) {
+      console.warn(`Unable to load ${path}:`, error);
+    }
+  }
+
+  if (window.location.protocol === "file:") {
+    initializePetData(fallbackPets);
+    setMessage("Loaded fallback pet data. For fetch() to read pets.json, open the page through a local server.");
+    return;
+  }
+
+  console.error("Error loading pets.json from all known paths.");
+  showNotice("Unable to load pet data from pets.json. Use http://127.0.0.1:8000/javascript_frontend/index.html.");
+  setMessage("Pet data could not be loaded.");
+}
+
 const actions = {
   view_all_pets: () => {
     renderQueryResult(
       pets,
       ["pet_id", "name", "species", "age", "available"],
       "view_all_pets",
-      "Showing all pets from the sample data."
+      "Showing all pets loaded from pets.json."
     );
   },
   view_available_pets: () => {
@@ -280,7 +322,7 @@ function showQuery(queryKey) {
 }
 
 function setMessage(message) {
-  statusMessage.textContent = `${message} This frontend uses the sample data and is not connected to the live backend.`;
+  statusMessage.textContent = `${message} Data source: pets.json.`;
 }
 
 function showNotice(message) {
@@ -325,6 +367,4 @@ function formatValue(value) {
   return String(value);
 }
 
-syncPetAvailabilityWithApprovals();
-populateApplicationOptions();
-actions.view_all_pets();
+loadPets();

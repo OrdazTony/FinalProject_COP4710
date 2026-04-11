@@ -1,0 +1,37 @@
+[
+  {
+    "pet_id": 101,
+    "name": "Buddy",
+    "species": "Dog",
+    "age": 3,
+    "available": false
+  },
+  {
+    "pet_id": 102,
+    "name": "Mittens",
+    "species": "Cat",
+    "age": 2,
+    "available": true
+  },
+  {
+    "pet_id": 103,
+    "name": "Rocky",
+    "species": "Dog",
+    "age": 7,
+    "available": false
+  },
+  {
+    "pet_id": 104,
+    "name": "Coco",
+    "species": "Bird",
+    "age": 0,
+    "available": true
+  },
+  {
+    "pet_id": 105,
+    "name": "Luna",
+    "species": "Cat",
+    "age": 12,
+    "available": true
+  }
+]

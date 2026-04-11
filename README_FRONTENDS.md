@@ -15,18 +15,25 @@ Both are **view-only prototypes** right now and are **not yet connected** to the
 - `javascript_frontend/index.html`
 - `javascript_frontend/styles.css`
 - `javascript_frontend/app.js`
+- `javascript_frontend/pets.json`
 
-### Option A: Open directly in a browser
-1. Open the `javascript_frontend` folder.
-2. Double-click `index.html`.
-3. Or right-click and open it in your browser.
+### Recommended: run with a local server
+Because the page uses `fetch("pets.json")`, opening `index.html` directly with `file://` may cause the browser to block the request.
 
-### Option B: Open from terminal
 From the project root:
 
 ```bash
-open javascript_frontend/index.html
+python3 -m http.server 8000
 ```
+
+Then open:
+
+```text
+http://127.0.0.1:8000/javascript_frontend/index.html
+```
+
+### Optional: direct open for a quick fallback preview
+You can still double-click `index.html`, but some browsers will block `fetch()` and the page will fall back to built-in sample pet data instead of loading `pets.json` directly.
 
 ---
 
